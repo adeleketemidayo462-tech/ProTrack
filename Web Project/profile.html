@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Settings | ProTrack</title>
+    <link rel ="icon" href = "logo.png" type = "image/png">
+    
+    <link rel="stylesheet" href="project.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        /* Define CSS Variables (Copy from index.html) */
+        :root {
+            --color-primary: #ae00ff; /* Purple */
+            --color-secondary: #080808da; /* Dark Text/Highlight */
+            --color-text-dark: #ad4fd5; /* Lighter Purple Text */
+            --color-text-light: #0e0e0e; /* Near Black */
+            --color-card-white: #ffffff;
+            --color-background-light: #f4f4f9; 
+            --color-border-subtle: #bb0feb; /* Light Purple Border */
+            --site-background: #bb0feb; 
+        }
+
+        /* Basic Layout styles (Copy these from index.html's <style> block) */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--site-background); 
+            color: var(--color-text-dark);
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .main-header { /* Header styles needed here */
+             background-color: var(--color-card-white);
+             border-bottom: 1px solid var(--color-border-subtle);
+             padding: 15px 0;
+             position: sticky; 
+             top: 0;
+             z-index: 10;
+        }
+        .main-header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo { /* Logo styles needed here */
+            text-decoration: none;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        .logo-primary {
+            color: var(--color-primary);
+        }
+        .logo-secondary {
+            color: var(--color-secondary);
+        }
+        /* Footer styles needed here */
+        .main-footer {
+            text-align: center; 
+            padding: 20px 0; 
+            border-top: 1px solid var(--color-border-subtle); 
+            color: #6c757d;
+            background-color: var(--color-card-white);
+            margin-top: 40px; /* Space above footer */
+        }
+        
+        /* -------------------------------------- */
+        /* PROFILE PAGE SPECIFIC STYLES */
+        /* -------------------------------------- */
+        
+        .profile-content {
+            padding: 40px 0;
+            min-height: 70vh; /* Ensure content area is tall */
+        }
+        
+        .settings-card {
+            background-color: var(--color-card-white);
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            padding: 30px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .settings-card h1 {
+            font-size: 2.5rem;
+            color: var(--color-primary);
+            border-bottom: 2px solid var(--color-border-subtle);
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .setting-group {
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed #e0e0e0;
+        }
+        
+        .setting-group h2 {
+            font-size: 1.5rem;
+            color: var(--color-secondary);
+            margin-bottom: 10px;
+            text-align: left;
+        }
+
+        .setting-group p {
+            color: #6c757d;
+            margin-bottom: 15px;
+        }
+
+        .setting-group a, .btn-secondary {
+            display: inline-block;
+            padding: 10px 15px;
+            background-color: var(--color-background-light);
+            color: var(--color-secondary);
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.2s;
+        }
+        
+        .setting-group a:hover, .btn-secondary:hover {
+            background-color: #e0e0e0;
+            color: var(--color-primary);
+        }
+        
+        .setting-group:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="logo.png" alt="" style="width: 35px;height: 35px; position: absolute; left:85px; top:22px;"> 
+                <span class="logo-primary">Pro</span><span class="logo-secondary">Track</span>
+            </a>
+            <nav>
+                <a href="index.html" style="text-decoration: none; color: black; font-weight: 600;" class="nav-link btn btn-primary">← Back to Home</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="profile-content">
+        <div class="container">
+            <div class="settings-card">
+                <h1>Account Profile Settings</h1>
+                
+                <div class="setting-group">
+                    <h2>Personal Information</h2>
+                    <p>Update your name, email address, and profile picture.</p>
+                    <a href="edit-profile.html">Edit Info</a> </div>
+                
+                <div class="setting-group">
+                    <h2>Security</h2>
+                    <p>Change your password and manage two-factor authentication.</p>
+                    <a href="https://support.google.com/accounts/answer/41078?hl=en&co=GENIE.Platform%3DDesktop">Change Password</a>
+                </div>
+                
+                <div class="setting-group">
+                    <h2>Subscription & Billing</h2>
+                    <p>View your current plan, update payment methods, or view invoices.</p>
+                    <a href="#">Manage Subscription</a>
+                </div>
+                
+                <div class="setting-group">
+                    <h2>Privacy Controls</h2>
+                    <p>Control how your data is used and viewed by others on the platform.</p>
+                    <a href="#">View Privacy Settings</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <footer class="main-footer">
+        <div class="container">
+            <p>&copy; 2025 ProTrack | Built for Beginners</p>
+        </div>
+    </footer>
+    
+</body>
+</html>

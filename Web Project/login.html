@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProTrack: Sign In</title>
+    <link rel ="icon" href = "logo.png" type = "image/png">
+    <link rel="stylesheet" href="project.css">
+    <style>
+        /* Define CSS Variables for a theme */
+        :root {
+            --color-primary: #ae00ff; /* Purple */
+            --color-secondary: #080808da; /* Dark Text/Highlight */
+            --color-card-white: #ffffff;
+            --color-background-light: #c586f0; 
+            --color-border-subtle: #7900fa; /* Light Purple Border */
+            --color-error: #f8d7da; /* Light Red for Error */
+            --color-error-text: #8000ff; /* Dark Red Text */
+            --color-input-border: #000000;
+            --color-input-focus: #bd80ff;
+            --color-button-orange: #7900fa; /* Example orange color from image */
+            --color-button-hover: #965eb7; 
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--color-background-light);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .login-container {
+            background-color: var(--color-card-white);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+
+        h1 {
+            color: var(--color-error-text); /* Using red/pink tone for header */
+            font-size: 2rem;
+            margin-bottom: 5px;
+        }
+
+        .subtitle {
+            color: #000000;
+            margin-bottom: 30px;
+            font-size: 1rem;
+        }
+
+        .form-group {
+            text-align: left;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            color: var(--color-secondary);
+            margin-bottom: 8px;
+        }
+
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--color-input-border);
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 1rem;
+            transition: border-color 0.2s;
+            background-color: var(--color-background-light); /* Light blue/grey background on input */
+        }
+        
+        /* Highlight the input field for visual matching with your image */
+        input[type="email"] { 
+            border-color: #a7c8e6; /* Blueish border */
+            background-color: #e0bdfd; /* Very light blue fill */
+        }
+        input[type="password"] {
+            border-color: #a7c8e6;
+            background-color: #e0bdfd;
+        }
+
+
+        input:focus {
+            border-color: var(--color-input-focus);
+            outline: none;
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+        }
+
+        .btn-signin {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--color-button-orange); /* Orange color from your image */
+            color: var(--color-card-white);
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background-color 0.2s, box-shadow 0.2s;
+            text-transform: uppercase;
+        }
+
+        .btn-signin:hover {
+            background-color: var(--color-button-hover);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .forgot-password {
+            margin-top: 15px;
+            display: block;
+            color: #000000; 
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        /* Error Message Styles */
+        .alert-error {
+            background-color: var(--color-error); /* Light pink background */
+            color: var(--color-error-text); /* Dark red text */
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            text-align: left;
+            border: 1px solid #f5c6cb;
+            display: none; /* Hidden by default */
+        }
+    </style>
+</head>
+<body>
+        
+    <div class="login-container">
+        <h1>LOGIN</h1>
+        <p class="subtitle">Sign in to access your learning tracks.</p>
+
+        <div id="error-message" class="alert-error">
+            Invalid email or password.
+        </div>
+
+        <form id="login-form">
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" value="" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" value="P@ssword123" required>
+            </div>
+
+            <button type="submit" class="btn-signin">Sign In</button>
+            
+            <a href="https://support.google.com/accounts/answer/41078?hl=en&co=GENIE.Platform%3DDesktop" class="forgot-password">Forgot your password?</a>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('login-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            const emailInput = document.getElementById('email').value;
+            const passwordInput = document.getElementById('password').value;
+            const errorMessage = document.getElementById('error-message');
+
+            // --- Authentication Logic ---
+            const CORRECT_EMAIL = 'test@trackstart.com';
+            const CORRECT_PASSWORD = 'P@ssword123';
+
+            if (emailInput === CORRECT_EMAIL && passwordInput === CORRECT_PASSWORD) {
+                // Successful Login
+                errorMessage.style.display = 'none';
+                
+                // 1. Set the flag in localStorage
+                localStorage.setItem('isLoggedIn', 'true');
+                
+                // 2. Redirect to the homepage (index.html)
+                window.location.href = 'index.html'; 
+            } else {
+                // Failed Login
+                // Show the error message element
+                errorMessage.style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>

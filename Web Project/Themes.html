@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Themes & Display | ProTrack</title>
+    <link rel ="icon" href = "logo.png" type = "image/png">
+    
+    <link rel="stylesheet" href="project.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        /* Define CSS Variables (Copy from index.html) */
+        :root {
+            --color-primary: #ae00ff; /* Purple */
+            --color-secondary: #080808da; /* Dark Text/Highlight */
+            --color-text-dark: #ad4fd5; /* Lighter Purple Text */
+            --color-text-light: #0e0e0e; /* Near Black */
+            --color-card-white: #ffffff;
+            --color-background-light: #f4f4f9; 
+            --color-border-subtle: #bb0feb; /* Light Purple Border */
+            --site-background: #bb0feb; 
+        }
+
+        /* Basic Layout styles (Copy these from index.html's <style> block) */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--site-background); 
+            color: var(--color-text-dark);
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .main-header { /* Header styles needed here */
+             background-color: var(--color-card-white);
+             border-bottom: 1px solid var(--color-border-subtle);
+             padding: 15px 0;
+             position: sticky; 
+             top: 0;
+             z-index: 10;
+        }
+        .main-header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo { /* Logo styles needed here */
+            text-decoration: none;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        .logo-primary {
+            color: var(--color-primary);
+        }
+        .logo-secondary {
+            color: var(--color-secondary);
+        }
+        /* Footer styles needed here */
+        .main-footer {
+            text-align: center; 
+            padding: 20px 0; 
+            border-top: 1px solid var(--color-border-subtle); 
+            color: #6c757d;
+            background-color: var(--color-card-white);
+            margin-top: 40px; 
+        }
+        
+        /* -------------------------------------- */
+        /* THEMES PAGE SPECIFIC STYLES */
+        /* -------------------------------------- */
+        
+        .themes-content {
+            padding: 40px 0;
+            min-height: 70vh;
+        }
+        
+        .themes-card {
+            background-color: var(--color-card-white);
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            padding: 30px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .themes-card h1 {
+            font-size: 2.5rem;
+            color: var(--color-primary);
+            border-bottom: 2px solid var(--color-border-subtle);
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .theme-selection-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            padding-top: 10px;
+        }
+
+        .theme-option {
+            text-align: center;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .theme-option:hover {
+            border-color: var(--color-primary);
+            box-shadow: 0 0 10px rgba(174, 0, 255, 0.2);
+        }
+
+        .theme-option.active {
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 3px rgba(174, 0, 255, 0.5); /* Stronger indicator */
+        }
+
+        .theme-preview {
+            width: 100%;
+            height: 120px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+        }
+        
+        /* Specific Previews */
+        .theme-preview.light { background-color: #f8f8f8; color: #333; }
+        .theme-preview.dark { background-color: #333; color: #f8f8f8; border-color: #000; }
+        .theme-preview.system { background: linear-gradient(to right, #f8f8f8 50%, #333 50%); }
+        
+        .theme-preview span {
+            display: block;
+            padding-top: 45px;
+            font-weight: 600;
+        }
+        
+        .theme-name {
+            font-weight: 600;
+            color: var(--color-secondary);
+        }
+        
+        .btn-save-themes {
+            display: block;
+            margin: 30px auto 0;
+            padding: 12px 30px;
+            background-color: var(--color-primary);
+            color: var(--color-card-white);
+            border: none;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .btn-save-themes:hover {
+            background-color: #6a00a7;
+        }
+
+        /* JavaScript Utility Class */
+        .theme-option.active .theme-name {
+            color: var(--color-primary);
+        }
+    </style>
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="logo.png" alt="" style="width: 35px;height: 35px; position: absolute; left:85px; top:22px;">
+                <span class="logo-primary">Pro</span><span class="logo-secondary">Track</span>
+            </a>
+            <nav>
+                <a href="index.html" style="text-decoration: none; color: black; font-weight: 600;"class="nav-link btn btn-primary">← Back to Home</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="themes-content">
+        <div class="container">
+            <div class="themes-card">
+                <h1><i class="fa-solid fa-palette"></i> Display & Theme Settings</h1>
+                
+                <p style="text-align: center; color: #6c757d; margin-bottom: 25px;">Choose your preferred color scheme for the ProTrack interface.</p>
+                
+                <div class="theme-selection-grid">
+                
+                    <div class="theme-option active" data-theme="light">
+                        <div class="theme-preview light">
+                            <span style="color: #333;">Aa</span>
+                        </div>
+                        <span class="theme-name">Light Theme</span>
+                    </div>
+
+                    <div class="theme-option" data-theme="dark">
+                        <div class="theme-preview dark">
+                            <span style="color: #f8f8f8;">Aa</span>
+                        </div>
+                        <span class="theme-name">Dark Theme</span>
+                    </div>
+
+                    <div class="theme-option" data-theme="system">
+                        <div class="theme-preview system">
+                            <span style="color: #333;">Aa</span>
+                        </div>
+                        <span class="theme-name">System Default</span>
+                    </div>
+
+                </div>
+                
+                <button class="btn-save-themes">Save Theme Settings</button>
+
+            </div>
+        </div>
+    </div>
+
+    <footer class="main-footer">
+        <div class="container">
+            <p>&copy; 2025 ProTrack | Built for Beginners</p>
+        </div>
+    </footer>
+    
+    <script>
+        // Basic JavaScript for theme selection visual feedback (does not change actual theme)
+        document.addEventListener('DOMContentLoaded', () => {
+            const themeOptions = document.querySelectorAll('.theme-option');
+
+            themeOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    // Remove 'active' class from all options
+                    themeOptions.forEach(opt => opt.classList.remove('active'));
+                    
+                    // Add 'active' class to the clicked option
+                    this.classList.add('active');
+                });
+            });
+            
+            document.querySelector('.btn-save-themes').addEventListener('click', () => {
+                const activeTheme = document.querySelector('.theme-option.active').getAttribute('data-theme');
+                alert(`Theme set to: "${activeTheme}." (Actual theme change logic would go here)`)
+            });
+        });
+    </script>
+</body>
+</html>

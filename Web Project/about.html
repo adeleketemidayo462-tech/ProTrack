@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About ProTrack</title>
+    <link rel ="icon" href = "logo.png" type = "image/png">
+    <link rel="stylesheet" href="project.css">
+    <style>
+        /* Define CSS Variables for a theme */
+        :root {
+            --color-primary: #0b0b0b; 
+            --color-secondary: #a00ce4da; 
+            --color-text-light: #fff;
+            --color-text-dark: #0e0e0e; 
+            --color-card-white: #ffffff;
+            --color-background-light: #ad4fd5;
+            --color-border-subtle: #bb0feb;
+
+
+
+            
+        }
+
+        /* General Layout & Typography */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--color-background-light);
+            color: var(--color-text-dark);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        .main-header {
+            background-color: var(--color-card-white);
+            border-bottom: 1px solid var(--color-border-subtle);
+            padding: 15px 0;
+        }
+
+        .main-header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            text-decoration: none;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .logo-primary {
+            color: var(--color-primary);
+        }
+
+        .logo-secondary {
+            color: var(--color-secondary);
+        }
+
+        .main-nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-item {
+            margin-left: 25px;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--color-text-dark);
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-link:hover {
+            color: var(--color-primary);
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-transform: uppercase;
+            font-weight: 600;
+            display: inline-block;
+            text-align: center;
+            transition: background-color 0.2s, box-shadow 0.2s;
+        }
+
+        .btn-primary {
+            background-color: var(--color-primary);
+            color: var(--color-text-light) !important;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: #5d1ac8;
+            box-shadow: 0 4px 8px rgba(153, 0, 255, 0.901);
+        }
+
+        /* About Page Specific Styles */
+        .about-section {
+            padding: 60px 0;
+        }
+
+        .about-section h1 {
+            font-size: 2.8rem;
+            color: var(--color-primary);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .about-content {
+            background-color: var(--color-card-white);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .about-content h3 {
+            color: var(--color-secondary);
+            font-size: 1.5rem;
+            border-bottom: 2px solid var(--color-border-subtle);
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        .about-content p {
+            line-height: 1.8;
+            margin-bottom: 20px;
+            color: #555;
+        }
+        
+        .about-content ul {
+            list-style: disc;
+            margin-left: 25px;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        /* Footer Styles */
+        .main-footer {
+            text-align: center; 
+            padding: 20px 0; 
+            border-top: 1px solid var(--color-border-subtle); 
+            color: #6c757d;
+            background-color: var(--color-card-white);
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="logo.png" alt="" style="width: 35px;height: 35px; position: absolute; left:85px; top:22px;"> 
+                <span class="logo-primary">Pro</span><span class="logo-secondary">Track</span>
+            </a>
+            <nav class="main-nav">
+                <ul class="nav-list">
+                     <li class="nav-item">
+                        <a href="index.html" class="nav-link btn btn-primary">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="index.html#tracks" class="nav-link btn btn-primary">Tracks</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="about.html" class="nav-link btn btn-primary">About</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="about-section">
+        <div class="container">
+            <h1>All About ProTrack 💡</h1>
+            
+            <div class="about-content">
+                <p>Welcome to ProTrack, your straightforward, guided resource designed for absolute beginners entering the world of programming and technology. We believe the biggest barrier to learning to code is knowing where to start.</p>
+                
+                <h3>Our Mission</h3>
+                <p>Our mission is simple: to provide clear, structured pathways (or "tracks") that guide you from zero experience to a foundational understanding of key programming domains, like Web Development or Data Science. We eliminate decision fatigue by curating the best free, external resources (like W3Schools, freeCodeCamp, etc.) into an easy-to-follow curriculum.</p>
+
+                <h3>How ProTrack Works</h3>
+                <p>We break down complex skills into achievable "Phases." Our beginner tracks focus on Phase 1: Foundations. When you select a track, you get a clear overview of the skills you will master and are immediately linked to the best resource to begin learning that specific topic. We don't host the courses; we host the map!</p>
+
+                <h3>Key Features</h3>
+                <ul>
+                    <li>Curated Learning: We hand pick top quality, free materials so you don't waste time searching.</li>
+                    <li>Focused Paths: Our tracks are hyper focused on foundational skills necessary for your chosen career path.</li>
+                    <li>No Enrollment Hassle: Start instantly no payment, no endless sign-up forms, just learning.</li>
+                </ul>
+
+                <p>Start your coding journey today and turn confusion into confidence!</p>
+
+                <div style="text-align: center; margin-top: 30px;">
+                    <a href="index.html#tracks" class="btn btn-primary" style="font-size:1.1rem;">Explore Tracks Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="main-footer">
+        <div class="container">
+            <p>&copy; ProTrack | Built for Beginners</p>
+        </div>
+    </footer>
+    
+</body>
+</html>

@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module: NumPy Array Operations | ProTrack</title>
+    <link rel ="icon" href = "logo.png" type = "image/png">
+    
+    <link rel="stylesheet" href="project.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        /* Define CSS Variables (Copy from index.html) */
+        :root {
+            --color-primary: #ae00ff; /* Purple */
+            --color-secondary: #080808da; /* Dark Text/Highlight */
+            --color-text-dark: #ad4fd5; /* Lighter Purple Text */
+            --color-text-light: #0e0e0e; /* Near Black */
+            --color-card-white: #ffffff;
+            --color-background-light: #f4f4f9; 
+            --color-border-subtle: #bb0feb; /* Light Purple Border */
+            --site-background: #bb0feb; 
+        }
+
+        /* Basic Layout styles (Copy these from index.html's <style> block) */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--color-background-light); /* Changed background for lesson contrast */
+            color: var(--color-text-dark);
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .main-header { 
+             background-color: var(--color-card-white);
+             border-bottom: 1px solid var(--color-border-subtle);
+             padding: 15px 0;
+             position: sticky; 
+             top: 0;
+             z-index: 10;
+        }
+        .main-header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo { 
+            text-decoration: none;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        .logo-primary {
+            color: var(--color-primary);
+        }
+        .logo-secondary {
+            color: var(--color-secondary);
+        }
+        .main-footer {
+            text-align: center; 
+            padding: 20px 0; 
+            border-top: 1px solid var(--color-border-subtle); 
+            color: #6c757d;
+            background-color: var(--color-card-white);
+            margin-top: 40px; 
+        }
+        
+        /* -------------------------------------- */
+        /* MODULE PAGE SPECIFIC STYLES */
+        /* -------------------------------------- */
+        
+        .module-wrapper {
+            display: flex;
+            padding-top: 30px;
+            padding-bottom: 40px;
+        }
+        
+        .sidebar {
+            flex: 0 0 280px; /* Fixed width sidebar */
+            background-color: var(--color-card-white);
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            margin-right: 30px;
+        }
+        
+        .main-lesson {
+            flex-grow: 1;
+            background-color: var(--color-card-white);
+            border-radius: 8px;
+            padding: 40px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .sidebar h3 {
+            font-size: 1.4rem;
+            color: var(--color-primary);
+            border-bottom: 2px solid var(--color-border-subtle);
+            padding-bottom: 10px;
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+        
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar ul li {
+            margin-bottom: 5px;
+        }
+        
+        .sidebar ul li a {
+            display: block;
+            padding: 8px 0;
+            text-decoration: none;
+            color: var(--color-secondary);
+            font-weight: 500;
+            border-left: 3px solid transparent;
+            transition: all 0.15s;
+        }
+        
+        .sidebar ul li a.current {
+            border-left: 3px solid var(--color-primary);
+            padding-left: 10px;
+            font-weight: 700;
+            color: var(--color-primary);
+            background-color: var(--color-background-light);
+        }
+
+        .sidebar ul li a:hover:not(.current) {
+            padding-left: 5px;
+            color: var(--color-primary);
+        }
+
+        .main-lesson h1 {
+            font-size: 2.5rem;
+            color: var(--color-secondary);
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+
+        .main-lesson h2 {
+            font-size: 1.8rem;
+            color: var(--color-primary);
+            margin-top: 30px;
+            margin-bottom: 15px;
+            text-align: left; /* Override global h2 alignment */
+        }
+        
+        .lesson-nav {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+
+        .btn-lesson {
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.2s;
+            border: 1px solid var(--color-primary);
+        }
+
+        .btn-prev {
+            background-color: var(--color-card-white);
+            color: var(--color-primary);
+        }
+        .btn-prev:hover {
+            background-color: var(--color-background-light);
+        }
+        
+        .btn-next {
+            background-color: var(--color-primary);
+            color: var(--color-card-white);
+        }
+        .btn-next:hover {
+            background-color: #6a00a7;
+        }
+        
+        /* Mobile adjustment */
+        @media (max-width: 900px) {
+            .module-wrapper {
+                flex-direction: column;
+            }
+            .sidebar {
+                flex: none;
+                width: 100%;
+                margin-right: 0;
+                margin-bottom: 20px;
+            }
+            .main-lesson {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="logo.png" alt="" style="width: 35px;height: 35px; position: absolute; left:85px; top:22px;"> 
+                <span class="logo-primary">Pro</span><span class="logo-secondary">Track</span>
+            </a>
+            <nav>
+                <a href="my-tracks.html" style="text-decoration: none; color: black; font-weight: 600;" class="nav-link btn btn-primary">
+                    <i class="fas fa-book"></i> Back to My Tracks
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="module-wrapper container">
+        
+        <aside class="sidebar">
+            <h3>Data Science Foundations</h3>
+            <ul>
+                <li><a href="data-track-module-python-intro.html">1. Introduction to Python</a></li>
+                <li><a href="data-track-module-numpy.html" class="current">2. NumPy Array Operations</a></li>
+                <li><a href="data-track-module-pandas-intro.html">3. Pandas DataFrames</a></li>
+                <li><a href="data-track-module-visualization.html">4. Basic Visualization</a></li>
+                <li><a href="data-track-module-quiz.html">Quiz: Data Foundations Checkpoint</a></li>
+            </ul>
+        </aside>
+        
+        <main class="main-lesson">
+            <p style="color: var(--color-primary); font-weight: 600;">Module 2 / Phase 1</p>
+            <h1>Introduction to NumPy and N-dimensional Arrays</h1>
+            
+            <p style="color: #6c757d; font-size: 1.1rem;">NumPy is the cornerstone of scientific computing in Python. Learn how to create and manipulate fast, efficient array structures.</p>
+            
+            <hr>
+            
+            <h2>Core Concept 1: The ndarray Object</h2>
+            <p style="color: var(--color-secondary);">The ndarray (N-dimensional array) is the central object in NumPy. It is a powerful container for large datasets, enabling fast mathematical operations over entire arrays without using slow Python loops. Understand the difference between a list and a NumPy array.</p>
+            
+            <h2>Practical Exercise: Array Slicing and Filtering</h2>
+            <p style="color: var(--color-secondary);">Practice creating a 2x3 array and then use slicing (arr[row, col]) to select specific elements. Also, experiment with Boolean indexing to filter data (e.g., selecting all elements greater than 5).</p>
+            
+            <div class="lesson-nav">
+                <a href="data-track-module-python-intro.html" class="btn-lesson btn-prev">
+                    <i class="fas fa-chevron-left"></i> Previous Lesson
+                </a>
+                <a href="data-track-module-pandas-intro.html" class="btn-lesson btn-next">
+                    Next Lesson <i class="fas fa-chevron-right"></i>
+                </a>
+            </div>
+            
+        </main>
+    </div>
+
+    <footer class="main-footer">
+        <div class="container">
+            <p>&copy; 2025 ProTrack | Built for Beginners</p>
+        </div>
+    </footer>
+    
+</body>
+</html>

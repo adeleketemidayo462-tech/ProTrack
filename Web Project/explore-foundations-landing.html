@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Foundation Overview | ProTrack</title>
+    <link rel ="icon" href = "logo.png" type = "image/png">
+    
+    <link rel="stylesheet" href="project.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        /* Define CSS Variables (Copy from index.html) */
+        :root {
+            --color-primary: #0b0b0b; 
+            --color-secondary: #a00ce4da; 
+            --color-text-light: #fff;
+            --color-text-dark: #0e0e0e; 
+            --color-card-white: #ffffff;
+            --color-background-light: #ad4fd5; /* Purple background */
+            --color-border-subtle: #bb0feb;
+            --color-highlight-bg: #f4f4f9; /* Light contrast background */
+        }
+
+        /* Basic Layout styles (Copied from your previous files) */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--color-background-light);
+            color: var(--color-text-dark);
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .main-header {
+            background-color: var(--color-card-white);
+            border-bottom: 1px solid var(--color-border-subtle);
+            padding: 15px 0;
+        }
+        .main-header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            text-decoration: none;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        .logo-primary {
+            color: var(--color-primary);
+        }
+        .logo-secondary {
+            color: var(--color-secondary);
+        }
+        .main-footer {
+            text-align: center; 
+            padding: 20px 0; 
+            border-top: 1px solid var(--color-border-subtle); 
+            color: #6c757d;
+            background-color: var(--color-card-white);
+            margin-top: 40px;
+        }
+        .btn {
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-transform: uppercase;
+            font-weight: 600;
+            display: inline-block;
+            text-align: center;
+            text-decoration: none;
+            transition: background-color 0.2s, box-shadow 0.2s;
+        }
+        .btn-primary {
+            background-color: var(--color-primary);
+            color: var(--color-text-light) !important;
+            border: none;
+        }
+        .btn-primary:hover {
+            background-color: #5d1ac8;
+        }
+        
+        /* -------------------------------------- */
+        /* FOUNDATIONS LANDING PAGE STYLES */
+        /* -------------------------------------- */
+
+        .landing-section {
+            padding: 60px 0;
+            text-align: center;
+            min-height: 70vh;
+        }
+
+        .landing-section h1 {
+            font-size: 3.2rem;
+            color: var(--color-card-white);
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .landing-section p.intro {
+            font-size: 1.3rem;
+            color: var(--color-highlight-bg); /* Light text on purple background */
+            margin-bottom: 50px;
+        }
+
+        .foundations-grid {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .foundation-card {
+            background-color: var(--color-card-white);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            text-align: left;
+            width: 45%;
+            transition: border 0.3s;
+            border: 3px solid transparent;
+        }
+        
+        .foundation-card:hover {
+            border: 3px solid var(--color-secondary);
+        }
+
+        .foundation-card h2 {
+            font-size: 2rem;
+            color: var(--color-secondary);
+            margin-top: 0;
+        }
+
+        .foundation-card ul {
+            list-style-type: none;
+            padding: 0;
+            margin-top: 15px;
+        }
+
+        .foundation-card ul li {
+            margin-bottom: 10px;
+            color: #555;
+            font-size: 1.05rem;
+        }
+
+        .foundation-card ul li i {
+            color: var(--color-primary);
+            margin-right: 10px;
+        }
+
+        .action-area {
+            margin-top: 50px;
+            background-color: var(--color-highlight-bg);
+            padding: 30px;
+            border-radius: 8px;
+        }
+        
+        .action-area a {
+            font-size: 1.2rem;
+            padding: 15px 30px;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="logo.png" alt="" style="width: 35px;height: 35px; position: absolute; left:85px; top:22px;"> 
+                <span class="logo-primary">Pro</span><span class="logo-secondary">Track</span>
+            </a>
+            <nav class="main-nav">
+                <ul class="nav-list">
+                     <li class="nav-item">
+                        <a href="index.html" class="nav-link btn btn-primary">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="index.html#tracks" class="nav-link btn btn-primary">Tracks</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="about.html" class="nav-link btn btn-primary">About</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="landing-section">
+        <div class="container">
+            <h1>Start with the Right Foundation</h1>
+            <p class="intro">Every great career begins with mastering the fundamentals. Choose the path that excites you most.</p>
+            
+            <div class="foundations-grid">
+                
+                <div class="foundation-card">
+                    <h2><i class="fas fa-globe"></i> Web Development</h2>
+                    <p style="color: #666;">The path to building interactive user interfaces and modern websites.</p>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> HTML Structure</li>
+                        <li><i class="fas fa-check-circle"></i> CSS Styling & Layouts</li>
+                        <li><i class="fas fa-check-circle"></i> Basic JavaScript Logic</li>
+                        <li><i class="fas fa-check-circle"></i> Responsive Design</li>
+                    </ul>
+                </div>
+
+                <div class="foundation-card">
+                    <h2><i class="fas fa-calculator"></i> Data Science</h2>
+                    <p style="color: #666;">The path to analyzing data, creating models, and finding insights.</p>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> Python Programming</li>
+                        <li><i class="fas fa-check-circle"></i> NumPy Arrays & Algebra</li>
+                        <li><i class="fas fa-check-circle"></i> Pandas Data Manipulation</li>
+                        <li><i class="fas fa-check-circle"></i> Data Visualization</li>
+                    </ul>
+                </div>
+                
+            </div>
+            
+            <div class="action-area">
+                <p style="font-size: 1.4rem; color: var(--color-secondary); font-weight: 600;">Ready to choose your starter track?</p>
+                <a href="index.html#tracks" class="btn btn-primary">View All Tracks & Modules</a>
+            </div>
+            
+        </div>
+    </section>
+
+    <footer class="main-footer">
+        <div class="container">
+            <p>&copy; 2025 TrackStart | Built for Beginners</p>
+        </div>
+    </footer>
+    
+</body>
+</html>

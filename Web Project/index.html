@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProTrack: Your Path to Programming Foundations</title>
+    <link rel ="icon" href = "logo.png" type = "image/png">
+    <link rel="stylesheet" href="project.css"> 
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        /* Define CSS Variables for a theme */
+        :root {
+            --color-primary: #ae00ff; /* Purple */
+            --color-secondary: #080808da; /* Dark Text/Highlight */
+            --color-text-dark: #ad4fd5; /* Lighter Purple Text */
+            --color-text-light: #0e0e0e; /* Near Black */
+            --color-card-white: #ffffff;
+            --color-background-light: #f4f4f9; 
+            --color-border-subtle: #bb0feb; /* Light Purple Border */
+            /* Default values for the overall background, matching your input */
+            --site-background: #bb0feb; 
+        }
+        
+        /* Modal Colors (Re-introduced for functionality and contrast) */
+        .text-primary-orange { color: #9500ff; } 
+        .bg-primary-orange { background-color: #8800ff; }
+        .hover\:bg-orange-700:hover { background-color: #000000; } 
+        
+        .text-primary-green { color: #9500ff; }
+        .bg-primary-green { background-color: #7700ff; }
+        .hover\:bg-green-700:hover { background-color: #bb00ff; }
+        
+        /* General Layout & Typography */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--site-background); 
+            color: var(--color-text-dark);
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        h2 {
+            font-size: 2.2rem;
+            color: var(--color-primary);
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        
+        .track-description {
+            text-align: center;
+            color: #6c757d;
+            margin-bottom: 40px;
+        }
+        /* Custom color override */
+        .tracks-overview h2, .tracks-overview .track-description {
+             color: var(--color-text-light) !important;
+        }
+
+        /* Header Styles */
+        .main-header {
+            background-color: var(--color-card-white);
+            border-bottom: 1px solid var(--color-border-subtle);
+            padding: 15px 0;
+            position: sticky; 
+            top: 0;
+            z-index: 10;
+        }
+
+        .main-header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            text-decoration: none;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .logo-primary {
+            color: var(--color-primary);
+        }
+
+        .logo-secondary {
+            color: var(--color-secondary);
+        }
+
+        .main-nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            align-items: center;
+        }
+        
+        /* 🌟 2a. Set nav-item to relative for dropdown positioning 🌟 */
+        .nav-item {
+            margin-left: 25px;
+            position: relative; 
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--color-text-dark);
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        
+        .nav-link.btn-primary {
+             color: var(--color-text-light) !important;
+        }
+
+        .nav-link:hover {
+            color: var(--color-primary);
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-transform: uppercase;
+            font-weight: 600;
+            display: inline-block;
+            text-align: center;
+            transition: background-color 0.2s, box-shadow 0.2s;
+        }
+
+        .btn-primary {
+            background-color: var(--color-primary);
+            color: var(--color-text-light) !important;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: #6a00a7; 
+            box-shadow: 0 4px 8px rgba(174, 0, 255, 0.3);
+        }
+        
+        /* Modal button override for Data Science */
+        .btn-green {
+            background-color: #10B981;
+            color: var(--color-card-white) !important;
+        }
+        .btn-green:hover {
+            background-color: #047857;
+            box-shadow: 0 4px 8px rgba(16, 185, 129, 0.3);
+        }
+
+        .menu-toggle {
+            display: none; 
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--color-text-dark);
+        }
+        
+        /* 🌟 2b. STYLES FOR AVATAR ICON 🌟 */
+        .nav-avatar-icon {
+            font-size: 2.2rem; /* Make the icon larger */
+            color: var(--color-primary); /* Use primary color for the icon */
+            display: flex; 
+            align-items: center;
+            justify-content: center;
+            padding: 0; 
+            margin-top: 0;
+            cursor: pointer; /* Indicate it's clickable */
+        }
+        .nav-avatar-icon:hover {
+            color: #6a00a7; /* Darker hover color */
+        }
+
+        /* 🌟 2c. STYLES FOR DROPDOWN MENU 🌟 */
+        .dropdown-menu {
+            position: absolute;
+            top: 100%; /* Position right below the nav-item */
+            right: 0;
+            z-index: 20;
+            width: 250px;
+            background-color: var(--color-card-white);
+            border: 1px solid var(--color-border-subtle);
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            padding: 10px 0;
+            margin-top: 10px;
+        }
+
+        .dropdown-menu ul {
+            list-style: none;
+            display: block;
+            padding: 0;
+            margin: 0;
+        }
+
+        .dropdown-menu li {
+            padding: 0;
+            margin: 0;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 10px 15px;
+            text-decoration: none;
+            color: var(--color-secondary);
+            font-weight: 500;
+            white-space: nowrap; 
+        }
+        
+        .dropdown-menu a:hover {
+            background-color: var(--color-background-light);
+            color: var(--color-primary);
+        }
+        /* ---------------------------------- */
+
+
+        /* Homepage Specific Styles (Existing) */
+        .hero {
+            text-align: center;
+            padding: 60px 20px;
+            background-color: var(--color-card-white);
+            border-bottom: 1px solid var(--color-border-subtle);
+            margin-bottom: 40px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            color: var(--color-primary);
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: white; 
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        .track-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding-bottom: 60px;
+        }
+
+        .track-card {
+            background-color: var(--color-card-white);
+            border: 1px solid var(--color-border-subtle);
+            border-radius: 8px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s ease;
+        }
+
+        .track-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+        
+        .track-card h2 {
+            font-size: 1.7rem;
+            color: var(--color-primary);
+            margin-bottom: 15px;
+        }
+        
+        .track-card ul {
+            list-style-type: none;
+            text-align: left;
+            margin: 15px 0 25px 0;
+            padding-left: 0;
+            color: #000000;
+        }
+        
+        .track-card ul li {
+            padding: 5px 0;
+            border-bottom: 1px dashed var(--color-border-subtle); /* Corrected dashed border style */
+        }
+        
+        .track-card ul li:before {
+            content: '✓';
+            color: var(--color-secondary);
+            margin-right: 8px;
+            font-weight: bold;
+        }
+
+        /* --- RESOURCES SECTION STYLES (Existing) --- */
+        .resources-section {
+            padding: 60px 0;
+            background-color: var(--color-background-light); 
+        }
+        
+        .resources-section h1 {
+            font-size: 2.5rem;
+            color: var(--color-primary);
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .resource-category {
+            background-color: var(--color-card-white);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 40px;
+        }
+
+        .resource-category h2 {
+            font-size: 2rem;
+            color: var(--color-secondary);
+            border-bottom: 2px solid var(--color-border-subtle);
+            padding-bottom: 10px;
+            margin-bottom: 25px;
+            text-align: left;
+        }
+
+        .resource-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px 0;
+            border-bottom: 1px dashed var(--color-border-subtle);
+        }
+        
+        .resource-item:last-child {
+            border-bottom: none;
+        }
+
+        .item-info {
+            flex-grow: 1;
+        }
+        
+        .item-info h3 {
+            font-size: 1.2rem;
+            margin: 0;
+            color: var(--color-primary);
+        }
+
+        .item-info p {
+            margin: 5px 0 0 0;
+            font-size: 0.95rem;
+            color: #6c757d;
+        }
+
+        .item-link a {
+            padding: 8px 15px;
+            border-radius: 5px;
+            background-color: var(--color-primary);
+            color: var(--color-text-light) !important;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.2s;
+        }
+        
+        .item-link a:hover {
+            background-color: #6a00a7;
+        }
+        /* --- END RESOURCES SECTION STYLES --- */
+
+
+        /* Footer Styles (Existing) */
+        .main-footer {
+            text-align: center; 
+            padding: 20px 0; 
+            border-top: 1px solid var(--color-border-subtle); 
+            color: #6c757d;
+            background-color: var(--color-card-white);
+        }
+        
+        /* Utility for the modal (Existing) */
+        .hidden { display: none !important; }
+        
+        /* Modal position fix and base styles (Existing) */
+        .fixed {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+        /* ... (other modal styles omitted for brevity) ... */
+
+        /* Basic Responsiveness (Existing) */
+        @media (max-width: 768px) {
+            .main-header .container {
+                flex-wrap: wrap;
+            }
+            .main-nav {
+                display: none; 
+                width: 100%;
+                order: 3;
+            }
+            .main-nav ul {
+                flex-direction: column;
+                padding-top: 10px;
+            }
+            .nav-item {
+                margin: 10px 0;
+            }
+            .menu-toggle {
+                display: block;
+            }
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+        .bg-gray-800 { background-color: rgba(31, 41, 55, 0.75); } 
+        .flex { display: flex; }
+        .items-center { align-items: center; }
+        .justify-center { justify-content: center; }
+        .p-4 { padding: 1rem; }
+        .z-50 { z-index: 50; }
+        .bg-white { background-color: white; }
+        .rounded-lg { border-radius: 0.5rem; }
+        .shadow-xl { box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); }
+        .max-w-lg { max-width: 32rem; }
+        .w-full { width: 100%; }
+        .p-8 { padding: 2rem; }
+        .space-y-6 > * + * { margin-top: 1.5rem; }
+        .text-2xl { font-size: 1.5rem; }
+        .font-bold { font-weight: 700; }
+        .text-left { text-align: left; }
+        .text-gray-500 { color: #6B7280; }
+        .hover\:text-gray-700:hover { color: #4B5563; }
+        .w-6 { width: 1.5rem; }
+        .h-6 { height: 1.5rem; }
+        .text-gray-700 { color: #4B5563; }
+        .list-disc { list-style-type: disc; }
+        .list-inside { list-style-position: inside; }
+        .space-y-2 > * + * { margin-top: 0.5rem; }
+        .pt-4 { padding-top: 1rem; }
+        .border-t { border-top-width: 1px; }
+        .border-gray-200 { border-color: #E5E7EB; }
+        .text-center { text-align: center; }
+        .font-semibold { font-weight: 600; }
+        .py-3 { padding-top: 0.75rem; padding-bottom: 0.75rem; }
+        .px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
+        .shadow-md { box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1); }
+        .transition { transition-property: all; transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); transition-duration: 150ms; }
+        .duration-200 { transition-duration: 200ms; }
+        .text-xs { font-size: 0.75rem; }
+        .mt-2 { margin-top: 0.5rem; }
+        .text-gray-500 { color: #6B7280; }
+        /* Quiz Placeholder Styles */
+        .bg-blue-50 { background-color: #EFF6FF; }
+        .border-blue-200 { border-color: #BFDBFE; }
+        .text-blue-700 { color: #1D4ED8; }
+        .mb-2 { margin-bottom: 0.5rem; }
+        .text-sm { font-size: 0.875rem; }
+        .text-gray-600 { color: #4B5563; }
+        .mt-3 { margin-top: 0.75rem; }
+        .bg-blue-500 { background-color: #ae1bf8; }
+        .hover\:bg-blue-600:hover { background-color: #8f25eb; }
+        
+        .bg-green-50 { background-color: #ECFDF5; }
+        .border-green-200 { border-color: #A7F3D0; }
+
+
+        /* Basic Responsiveness (Optional but recommended) */
+        @media (max-width: 768px) {
+            .main-header .container {
+                flex-wrap: wrap;
+            }
+            .main-nav {
+                display: none; 
+                width: 100%;
+                order: 3;
+            }
+            .main-nav ul {
+                flex-direction: column;
+                padding-top: 10px;
+            }
+            .nav-item {
+                margin: 10px 0;
+            }
+            .menu-toggle {
+                display: block;
+            }
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="logo.png" alt="" style="width: 35px;height: 35px; position: absolute; left:85px; top:22px;"> 
+                <span class="logo-primary">Pro</span><span class="logo-secondary">Track</span>
+            </a>
+            <nav class="main-nav">
+                <ul class="nav-list" style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
+                    <li class="nav-item">
+                        <a href="#top" class="nav-link btn btn-primary">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#tracks" class="nav-link btn btn-primary">Tracks</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#resources-section" class="nav-link btn btn-primary">Resources</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="about.html" class="nav-link btn btn-primary">About</a>
+                    </li>
+                    
+                    <li class="nav-item" id="login-item">
+                        <a href="login.html" class="nav-link btn btn-primary">Sign In</a>
+                    </li>
+                    
+                    <li class="nav-item hidden" id="account-item">
+                        <a href="#" class="nav-link nav-avatar-icon" title="View Account" onclick="event.preventDefault(); toggleDropdown();">
+                            <i class="fas fa-user-circle"></i> 
+                        </a>
+                        
+                        <div id="profile-dropdown" class="dropdown-menu hidden">
+                            <ul>
+                                <li>
+                                    <a href="profile.html">
+                                        <i class="fas fa-cog"></i> Profile Settings
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="my-tracks.html">
+                                        <i class="fas fa-book"></i> My Learning Tracks
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="themes.html">
+                                        <i class="fa-solid fa-palette"></i> Themes
+                                    </a>
+                                </li>
+                                <li style="border-top: 1px solid #eee; margin-top: 5px; padding-top: 5px;">
+                                    <a href="#" onclick="logoutUser()">
+                                        <i class="fas fa-sign-out-alt"></i> Sign Out
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+            <button class="menu-toggle" aria-label="Toggle Navigation">☰</button>
+        </div>
+    </header>
+
+    <section class="hero" id="top">
+        <div class="container">
+            <h1>Start Coding Today. No Experience Needed.</h1>
+            <p style = "display: flex; color: white; font-family: sans-serif;">ProTrack provides a clear, guided path to foundational programming skills. Choose your starting point and begin learning with trusted, free resources.</p>
+
+            <div class="hero-content">
+                <a href="explore-foundations-landing.html" class="btn hero-btn btn-primary" style="font-size:1.1rem; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
+                    EXPLORE FOUNDATIONS
+                </a>
+
+            </div>
+        </div>
+    </section>
+
+<section class="tracks-overview container" id="tracks">
+    <section>
+        <h2 style="color: rgb(10, 10, 10);"> Choose Your Beginner Track</h2>
+        <p style="color: rgb(10, 10, 10); font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;" class="track-description">Select the area that interests you most. Each track focuses on the essential Phase 1 skills.</p>
+
+        <div class="track-grid">
+
+            <div class="track-card">
+                <h2>🌐 Web Development Foundations</h2>
+                <p style="color: #ac12e8; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Learn the languages that power the internet: building, styling, and interacting with websites.</p>
+                
+                <ul style="color: #000000; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
+                    <li>HTML (Structure)</li>
+                    <li>CSS (Styling & Layout)</li>
+                    <li>Core JavaScript (Interactivity)</li>
+                    <li>Final Project: Responsive Landing Page</li>
+                </ul>
+                
+                <a href="#web-track-overview" class="btn btn-primary" onclick="showOverview('web-track-overview')" style=" font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Start the Web Track</a>
+            </div>
+
+            <div class="track-card">
+                <h2>📈 Data Science Foundations</h2>
+                <p style="color: #ac12e8; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Master Python and the fundamental libraries used for data handling and preliminary analysis.</p>
+                
+                <ul style="color: #000000; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
+                    <li>Python Programming Basics</li>
+                    <li>NumPy (Arrays & Computation)</li>
+                    <li>Pandas (DataFrames & Cleaning)</li>
+                    <li>Matplotlib (Basic Visualization)</li>
+                </ul>
+                
+                <a href="#data-track-overview" class="btn btn-primary" onclick="showOverview('data-track-overview')" style=" font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Start the Data Track</a>
+            </div>
+
+        </div>
+    </section>
+    
+    <section id="web-track-overview" class="hidden fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center p-4 z-50">
+        <div class="bg-white rounded-lg shadow-xl max-w-lg w-full p-8 space-y-6">
+            <div class="flex justify-between items-start">
+                <h2 class="text-2xl font-bold text-primary-orange text-left">🌐 Web Development Foundations</h2>
+                <button class="text-gray-500 hover:text-gray-700" onclick="hideOverview('web-track-overview')">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            
+            <p class="text-gray-700" style="color: #000000; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">This track is your Phase 1 journey into creating websites. You will start with the fundamental building blocks and progress to making interactive pages.</p>
+            
+            <ul class="list-disc list-inside text-gray-700 space-y-2" style="color: #000000; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
+                <li>HTML5: Learn the structure and elements of every webpage.</li>
+                <li>CSS3: Master styling, layout (Flexbox/Grid), and responsive design.</li>
+                <li>JavaScript (ES6): Understand core programming concepts to add interactivity.</li>
+            </ul>
+
+            <div class="pt-4 border-t border-gray-200 text-center">
+                <a 
+                    href="https://www.w3schools.com/html/" 
+                    target="_blank" 
+                    class="btn btn-primary bg-primary-orange hover:bg-orange-700 text-white font-semibold py-3 px-6 rounded-lg shadow-md transition duration-200"
+                >
+                    🚀 Start Learning HTML (External Link)
+                </a>
+                <p class="text-xs mt-2 text-gray-500">You will be redirected to an external learning resource.</p>
+            </div>
+            
+            <div class="bg-blue-50 p-4 rounded-lg border border-blue-200 text-center">
+                <h4 class="font-semibold text-blue-700 mb-2">✅ Self-Assessment Time</h4>
+                <p class="text-sm text-gray-600">Finished the HTML module? Click below to test your basic knowledge before moving to CSS!</p>
+                <button 
+                    onclick="alert('Quiz feature under construction! You would start a simple 3-question quiz here.')"
+                    class="mt-3 py-2 px-4 rounded-lg text-white font-medium bg-blue-500 hover:bg-blue-600 transition"
+                >
+                    Take HTML Basics Quiz
+                </button>
+            </div>
+        </div>
+    </section>
+    
+    <section id="data-track-overview" class="hidden fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center p-4 z-50">
+        <div class="bg-white rounded-lg shadow-xl max-w-lg w-full p-8 space-y-6">
+            <div class="flex justify-between items-start">
+                <h2 class="text-2xl font-bold text-primary-green text-left">📈 Data Science Foundations</h2>
+                <button class="text-gray-500 hover:text-gray-700" onclick="hideOverview('data-track-overview')">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+            
+            <p class="text-gray-700" style="color: #000000; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">This track starts with the fundamental programming language for data: Python. Your goal in Phase 1 is to master the basics before moving to advanced libraries.</p>
+            
+            <ul class="list-disc list-inside text-gray-700 space-y-2" style="color: #000000; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
+                <li>Python Basics: Variables, loops, functions, and data structures.</li>
+                <li>Virtual Environments: Understanding environment isolation (crucial for DS).</li>
+                <li>Jupyter/Colab: Setting up your notebook environment.</li>
+            </ul>
+
+            <div class="pt-4 border-t border-gray-200 text-center">
+                <a
+                    href="https://www.freecodecamp.org/learn/scientific-computing-with-python/" 
+                    target="_blank" 
+                    class="btn btn-green text-white font-semibold py-3 px-6 rounded-lg shadow-md transition duration-200"
+                style="background-color: #a200ff;">
+                    🐍 Start Learning Python (freeCodeCamp)
+                </a>
+                <p class="text-xs mt-2 text-gray-500">You will be redirected to an external learning resource.</p>
+            </div>
+            
+            <div class="bg-green-50 p-4 rounded-lg border border-green-200 text-center">
+                <h4 class="font-semibold text-primary-green mb-2">✅ Self-Assessment Time</h4>
+                <p class="text-sm text-gray-600">Finished Python Basics? Click below to test your knowledge before moving to NumPy!</p>
+                <button 
+                    onclick="alert('Quiz feature under construction! You would start a simple 3-question quiz here.')"
+                    class="mt-3 py-2 px-4 rounded-lg text-white font-medium bg-primary-green hover:bg-green-700 transition"
+                >
+                    Take Python Basics Quiz
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <section class="resources-section" id="resources-section">
+        <div class="container">
+            <h1 style="color: var(--color-primary); text-align: center;">Recommended Tools & Communities 🛠</h1>
+            <p style="text-align: center; max-width: 700px; margin: 0 auto 50px; color: var(--color-text-light); font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">These external resources and tools are essential for success in your learning track. They are highly recommended by industry professionals.</p>
+
+            <div class="resource-category">
+                <h2 style="color: var(--color-secondary);">💻 Essential Coding Tools</h2>
+                
+                <div class="resource-item">
+                    <div class="item-info">
+                        <h3>VS Code (Visual Studio Code)</h3>
+                        <p>The leading free code editor. Highly recommended for all tracks (Web Dev & Data Science).</p>
+                    </div>
+                    <div class="item-link">
+                        <a href="https://code.visualstudio.com/" target="_blank">Download VS Code</a>
+                    </div>
+                </div>
+
+                <div class="resource-item">
+                    <div class="item-info">
+                        <h3>GitHub</h3>
+                        <p>Fundamental for version control and portfolio. Learn to save your code and collaborate.</p>
+                    </div>
+                    <div class="item-link">
+                        <a href="https://github.com/" target="_blank">Visit GitHub</a>
+                    </div>
+                </div>
+
+                <div class="resource-item">
+                    <div class="item-info">
+                        <h3>Online IDEs (Codepen/JSFiddle)</h3>
+                        <p>Great for quick Web Development practice and sharing small code snippets online.</p>
+                    </div>
+                    <div class="item-link">
+                        <a href="https://codepen.io/" target="_blank">Go to Codepen</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="resource-category">
+                <h2 style="color: var(--color-secondary);">📚 Reference & Documentation</h2>
+                
+                <div class="resource-item">
+                    <div class="item-info">
+                        <h3>MDN Web Docs (Mozilla)</h3>
+                        <p>The definitive, comprehensive reference for HTML, CSS, and JavaScript syntax.</p>
+                    </div>
+                    <div class="item-link">
+                        <a href="https://developer.mozilla.org/en-US/" target="_blank">Explore MDN</a>
+                    </div>
+                </div>
+
+                <div class="resource-item">
+                    <div class="item-info">
+                        <h3>W3Schools</h3>
+                        <p>Excellent for interactive tutorials and testing basic concepts quickly (especially for HTML/CSS).</p>
+                    </div>
+                    <div class="item-link">
+                        <a href="https://www.w3schools.com/" target="_blank">Visit W3Schools</a>
+                    </div>
+                </div>
+            </div>
+            
+             <div class="resource-category">
+                <h2 style="color: var(--color-secondary);">💬 Community & Support</h2>
+                
+                <div class="resource-item">
+                    <div class="item-info">
+                        <h3>Stack Overflow</h3>
+                        <p>The place to search for solutions when you encounter specific programming errors.</p>
+                    </div>
+                    <div class="item-link">
+                        <a href="https://stackoverflow.com/" target="_blank">Ask a Question</a>
+                    </div>
+                </div>
+
+                <div class="resource-item">
+                    <div class="item-info">
+                        <h3>r/learnprogramming (Reddit)</h3>
+                        <p>A supportive subreddit community for beginner programmers to ask questions and share progress.</p>
+                    </div>
+                    <div class="item-link">
+                        <a href="https://www.reddit.com/r/learnprogramming/" target="_blank">Join Reddit</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+</section>
+
+    <footer class="main-footer">
+        <div class="container">
+            <p>&copy; 2025 ProTrack | Built for Beginners</p>
+        </div>
+    </footer>    
+    <script>
+        // Toggle function for mobile menu (keeping the original functionality)
+        document.querySelector('.menu-toggle').addEventListener('click', () => {
+            const nav = document.querySelector('.main-nav');
+            // Simple toggle for display property on smaller screens
+            if (window.innerWidth <= 768) {
+                 nav.style.display = nav.style.display === 'flex' || nav.style.display === '' ? 'none' : 'flex';
+            }
+        });
+
+        // Functions to manage the Track Overview sections (the modals)
+        function showOverview(id) {
+            const element = document.getElementById(id);
+            if (element) {
+                element.classList.remove('hidden');
+                document.body.style.overflow = 'hidden'; // Prevent background scrolling
+            }
+        }
+
+        function hideOverview(id) {
+            const element = document.getElementById(id);
+            if (element) {
+                element.classList.add('hidden');
+                document.body.style.overflow = 'auto'; // Re-enable background scrolling
+            }
+        }
+        
+        // 🌟 4a. DROPDOWN TOGGLE FUNCTION 🌟
+        function toggleDropdown() {
+            const dropdown = document.getElementById('profile-dropdown');
+            dropdown.classList.toggle('hidden');
+        }
+        
+        // 🌟 4b. FUNCTION TO HANDLE SIGN OUT 🌟
+        function logoutUser() {
+            localStorage.removeItem('isLoggedIn'); // Remove the login flag
+            window.location.reload(); // Reload the page to show the "Sign In" button
+        }
+
+        // 🌟 4c. ACCOUNT/LOGIN TOGGLE LOGIC (Runs on page load) 🌟
+        document.addEventListener('DOMContentLoaded', () => {
+            const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+            const loginItem = document.getElementById('login-item');
+            const accountItem = document.getElementById('account-item');
+
+            if (isLoggedIn) {
+                if (loginItem) {
+                    loginItem.classList.add('hidden');
+                }
+                if (accountItem) {
+                    accountItem.classList.remove('hidden'); 
+                }
+            } else {
+                if (loginItem) {
+                    loginItem.classList.remove('hidden');
+                }
+                if (accountItem) {
+                    accountItem.classList.add('hidden'); 
+                }
+            }
+            
+            // Close the dropdown if the user clicks anywhere else
+            document.addEventListener('click', function(event) {
+                const accountItem = document.getElementById('account-item');
+                const dropdown = document.getElementById('profile-dropdown');
+                
+                // Ensure the click target is NOT inside the account icon/dropdown
+                if (dropdown && !dropdown.classList.contains('hidden') && accountItem && !accountItem.contains(event.target)) {
+                    dropdown.classList.add('hidden');
+                }
+            });
+        });
+        
+    </script>
+    
+</body>
+</html>

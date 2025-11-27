@@ -1,0 +1,349 @@
+/* --- 1. GLOBAL RESET & BASE STYLES --- */
+
+/* Color Palette Variables for easy maintenance */
+:root {
+    --color-primary: #ae00ff; 
+    --color-secondary: #0ce449da; 
+    --color-background-light: #ad4fd5;
+    --color-text-dark: #0e0e0e; 
+    --color-card-white: #ffffff;
+    --color-border-subtle: #bb0feb; 
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background-color: var(--color-background-light);
+    color: var(--color-text-dark);
+    line-height: 1.6;
+}
+
+/* Base Link Styling */
+a {
+    color: var(--color-primary);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+a:hover {
+    color: var(--color-text-dark);
+}
+
+/* Centering container */
+.container {
+    width: 90%;
+    max-width: 1200px; 
+    margin: 0 auto;
+}
+
+/* --- 2. HEADER & NAVIGATION STYLES --- */
+
+.main-header {
+    background-color: var(--color-card-white);
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--color-border-subtle);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Subtle shadow */
+    position: sticky; /* Keep header visible when scrolling */
+    top: 0;
+    z-index: 100;
+}
+
+.main-header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Logo Styling */
+.logo {
+    font-size: 1.8rem;
+    font-weight: 700;
+    /* color inherited from base link style, but we define parts below */
+}
+
+.logo-primary {
+    color: var(--color-text-dark);
+}
+
+.logo-secondary {
+    color: var(--color-primary);
+}
+
+/* Navigation Links */
+.main-nav {
+    display: block; /* Default: show on larger screens; hidden on mobile via media query */
+    /* Hide on mobile by default, handled by media query later */
+}
+
+.nav-list {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-item {
+    margin-left: 20px;
+}
+
+.nav-link {
+    color: var(--color-text-dark);
+    padding: 0.5rem 1rem;
+    font-weight: 500;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: var(--color-primary);
+}
+
+.menu-toggle {
+    display: none; /* Hidden on desktop */
+}
+
+/* --- 3. BUTTON STYLES (Used in Navigation) --- */
+
+.btn {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    text-align: center;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    display: inline-block;
+}
+
+.btn-primary {
+    background-color: var(--color-primary);
+    color: var(--color-card-white);
+}
+
+.btn-primary:hover {
+    background-color: #8203b8; /* Darker blue */
+    color: var(--color-card-white); /* Keep text white */
+    transform: translateY(-1px);
+}
+.hero{
+    background-image: url(img.jpg);
+    font-family: sans-serif;
+    background-size: cover;
+    background-position: center;
+}
+
+
+
+/* --- 4. TRACK CONTENT & MODULE STYLES --- */
+
+.track-content {
+    padding: 40px 0;
+}
+
+.track-content h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--color-text-dark);
+}
+
+.track-description {
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+    color: #000000;
+}
+
+.module-section {
+    background-color: var(--color-card-white);
+    border: 1px solid var(--color-border-subtle);
+    border-radius: 8px;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+.module-title {
+    padding: 15px 20px;
+    background-color: var(--color-background-light);
+    border-bottom: 1px solid var(--color-border-subtle);
+    cursor: pointer;
+    display: block; /* Make the summary the full click area */
+    user-select: none;
+}
+
+.module-title h2 {
+    font-size: 1.4rem;
+    margin: 0;
+    color: var(--color-primary); /* Primary accent for module titles */
+}
+
+/* Style for the content inside the collapsible <details> */
+.module-body {
+    padding: 20px;
+}
+
+/* --- 5. TOPIC LIST & CHECKBOX STYLES --- */
+
+.topic-list {
+    list-style: none;
+    padding: 0;
+}
+
+.topic-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px dashed var(--color-border-subtle);
+}
+
+.topic-item:last-child {
+    border-bottom: none;
+}
+
+.topic-item input[type="checkbox"] {
+    margin-right: 10px;
+    width: 20px;
+    height: 20px;
+    accent-color: var(--color-secondary); /* Sets the checkbox color to success green */
+}
+
+.topic-item label {
+    flex-grow: 1;
+    cursor: pointer;
+}
+
+/* Styling for Completed Topics (JS adds the 'completed' class) */
+.topic-item label.completed {
+    text-decoration: line-through;
+    color: var(--color-secondary); /* Success Green */
+    font-style: italic;
+}
+
+.resource-link {
+    margin-left: 20px;
+    font-size: 0.9rem;
+    color: var(--color-primary);
+    white-space: nowrap; /* Prevents wrapping */
+    padding: 5px 10px;
+    border: 1px solid var(--color-border-subtle);
+    border-radius: 4px;
+}
+
+.resource-link:hover {
+    background-color: var(--color-primary);
+    color: var(--color-card-white);
+    border-color: var(--color-primary);
+}
+
+/* --- 6. PROJECT GOAL BOX --- */
+
+.project-goal-box {
+    background-color: #e6f7ff; /* Very light blue for distinction */
+    border-left: 5px solid var(--color-primary);
+    padding: 15px;
+    margin-top: 20px;
+    border-radius: 4px;
+}
+
+.project-goal-box h3 {
+    color: var(--color-primary);
+    margin-top: 0;
+    font-size: 1.2rem;
+}
+
+/* --- 7. PROGRESS BAR STYLES --- */
+
+.progress-bar-container {
+    background-color: var(--color-border-subtle); /* Light grey base */
+    border-radius: 5px;
+    margin-bottom: 25px;
+    height: 30px;
+    overflow: hidden;
+    position: relative;
+    padding: 5px;
+}
+
+.progress-bar-fill {
+    height: 100%;
+    background-color: var(--color-primary); /* Primary Blue fill */
+    transition: width 0.5s ease-in-out;
+    border-radius: 3px;
+}
+
+.progress-bar-container p {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0;
+    font-weight: bold;
+    color: var(--color-text-dark); 
+    text-shadow: 1px 1px 1px var(--color-card-white); /* Ensures text is visible */
+    z-index: 10;
+}
+
+/* --- 8. MEDIA QUERIES (Mobile Responsiveness) --- */
+
+@media (max-width: 768px) {
+    .main-header .container {
+        flex-wrap: wrap;
+    }
+    
+    .main-nav {
+        /* Hide menu by default on mobile */
+        display: none;
+        width: 100%;
+        order: 3; /* Push menu below logo and toggle */
+    }
+
+    .nav-list {
+        flex-direction: column;
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    .nav-item {
+        margin: 5px 0;
+        border-bottom: 1px solid var(--color-border-subtle);
+    }
+    
+    .nav-item:last-child {
+        border-bottom: none;
+    }
+    
+    .nav-link {
+        display: flex;
+        padding: 10px;
+    }
+
+    /* Example: If you implement JS to show the menu, use a class like 'nav-open' */
+    /* .main-nav.nav-open { display: block; } */
+
+    .menu-toggle {
+        display: block; /* Show the toggle button */
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: var(--color-text-dark);
+        padding: 5px;
+    }
+
+    /* Content adjustments */
+    .track-content h1 {
+        font-size: 2rem;
+    }
+    
+    .topic-item {
+        flex-wrap: wrap;
+    }
+    
+    .resource-link {
+        margin-top: 5px;
+        margin-left: 0;
+        width: 100%;
+        text-align: center;
+    }
+}
